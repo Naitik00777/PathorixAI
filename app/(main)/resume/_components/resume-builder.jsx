@@ -23,9 +23,7 @@ import useFetch from "../../../../hooks/use-fetch";
 import { useUser } from "@clerk/nextjs";
 import { entriesToMarkdown } from "../../../../app/lib/helper";
 import { resumeSchema } from "../../../../app/lib/schema";
-// import html2pdf from "html2pdf.js";
-
-
+import html2pdf from "html2pdf.js";
 
 export default function ResumeBuilder({ initialContent }) {
   const [activeTab, setActiveTab] = useState("edit");
@@ -134,42 +132,6 @@ export default function ResumeBuilder({ initialContent }) {
     }
   };
 
-
-//   const [isGenerating, setIsGenerating] = useState(false);
-//   const generatePDF = async () => {
-//   setIsGenerating(true);
-//   try {
-//     const element = document.getElementById("resume-pdf");
-
-//     if (!element) {
-//       console.error("Element not found");
-//       return;
-//     }
-
-//     const html2pdf = (await import("html2pdf.js")).default;
-
-//     await html2pdf()
-//       .set({
-//         margin: [0.5, 0.5],
-//         filename: "resume.pdf",
-//         image: { type: "jpeg", quality: 0.98 },
-//         html2canvas: {
-//           scale: 2,
-//           useCORS: true,
-//         },
-//         jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
-//       })
-//       .from(element)
-//       .save();
-//   } catch (error) {
-//     console.error("PDF generation error:", error);
-//   } finally {
-//     setIsGenerating(false);
-//   }
-// };
-
-
-
   const onSubmit = async (data) => {
     try {
       const formattedContent = previewContent
@@ -187,7 +149,7 @@ export default function ResumeBuilder({ initialContent }) {
   return (
     <div data-color-mode="light" className="space-y-4">
       <div className="flex flex-col md:flex-row justify-between items-center gap-2">
-        <h1 className="font-bold bg-clip-text bg-gradient-to-t from-gray-500 via-white to-gray-600 text-5xl md:text-6xl">
+        <h1 className="font-bold gradient-title text-5xl md:text-6xl">
           Resume Builder
         </h1>
         <div className="space-x-2">
